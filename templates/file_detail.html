@@ -1,0 +1,36 @@
+<h2>{{ message }}</h2>
+<table border="1">
+    <tr>
+        <th>File ID</th>
+        <th>Batch</th>
+        <th>Reading 1</th>
+        <th>Reading 2</th>
+        <th>Reading 3</th>
+        <th>Reading 4</th>
+        <th>Reading 5</th>
+        <th>Reading 6</th>
+        <th>Reading 7</th>
+        <th>Reading 8</th>
+        <th>Reading 9</th>
+        <th>Reading 10</th>
+        <th>Time</th>
+    </tr>
+
+    {% for row in rows %}
+    <tr>
+        <td>{{ row["file_id"] }}</td>
+        <td>{{ row["batch_id_value"] }}</td>
+        <td>{{ row["reading1"] }}</td>
+        <td>{{ row["reading2"] }}</td>
+        <td>{{ row["reading3"] }}</td>
+        <td>{{ row["reading4"] }}</td>
+        <td>{{ row["reading5"] }}</td>
+        <td>{{ row["reading6"] }}</td>
+        <td>{{ row["reading7"] }}</td>
+        <td>{{ row["reading8"] }}</td>
+        <td>{{ row["reading9"] }}</td>
+        <td>{{ row["reading10"] }}</td>
+        <td>{{ row["hour"] }}:{{ row["minute"] }}:{{ row["second"] }}</td>
+    </tr>
+    {% endfor %}
+</table>

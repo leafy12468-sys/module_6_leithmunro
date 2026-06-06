@@ -5,12 +5,33 @@
 </head>
 <body>
 
-    <h1>Upload CSV File</h1>
+<h1>Upload CSV File</h1>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="csv_file" required>
-        <button type="submit">Upload</button>
-    </form>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="csv_file" required>
+    <button type="submit">Upload</button>
+</form>
+
+<table border="1">
+    <tr>
+        <th>Valid files</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+        <td><a href="/file/{{ row['file_id'] }}">{{ row['filename'] }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+    <tr>
+        <th>Invalid files</th>
+    </tr>
+    {% for row in invalid %}
+    <tr>
+        <td>{{ row['filename'] }}</td>
+    </tr>
+    {% endfor %}
+<a href="/">Upload another file</a>
 
 </body>
 </html>
