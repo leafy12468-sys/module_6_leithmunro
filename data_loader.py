@@ -9,6 +9,7 @@ def load_csv_to_db(conn, csv_path='csv.csv'):
     base_filename = csv_path
     filename = base_filename
 
+#   generates errors for invalid file
     try:
         df = pd.read_csv(csv_path)
         df.columns = df.columns.str.strip()
@@ -106,7 +107,6 @@ def load_csv_to_db(conn, csv_path='csv.csv'):
         conn.commit()
 
         raise
- 
 
 if __name__ == "__main__":
     conn = sqlite3.connect('my_database.db')

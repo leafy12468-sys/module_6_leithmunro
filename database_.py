@@ -1,5 +1,6 @@
 import sqlite3
 
+#   database schema created
 def create_db(conn):
     conn.execute("PRAGMA foreign_keys = ON")
     cursor = conn.cursor()

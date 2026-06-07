@@ -1,4 +1,12 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .return {
+        display: flex
+    }
+</style>
 <h2>{{ message }}</h2>
+
 <table border="1">
     <tr>
         <th>File ID</th>
@@ -34,3 +42,11 @@
     </tr>
     {% endfor %}
 </table>
+<div class="return">
+    <a href="/"><button>Return to homepage</button></a>
+    <form action="/delete/file/{{ file_id }}" method="POST"
+        onsubmit="return confirm('Delete this file?')">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+</html>

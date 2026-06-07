@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <h1>Error log</h1>
+    <table>
+        {% for error in errors %}
+        <tr>
+            <td>{{ error['filename'] }}</td>
+            <td style="color: red;">{{ error['error_message'] }}</td>
+            <td>{{ error['import_time'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/"><button>Return to homepage</button></a>
+</html>

@@ -1,37 +1,85 @@
 <!DOCTYPE html>
 <html>
+<style>
+    .upload_background {
+        background-color: grey;
+        width: 400px;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        border-radius: 90px;
+    }
+
+    .upload_pos {
+        padding-left: 50px;
+    }
+
+    .upload_button {
+        display: flex;
+        bottom: 100px;
+        margin-top: 10px;
+        border-radius: 70px;
+        font-size: 20px;
+    }
+    
+    .select_button {
+        font-size: 25px;
+        border-radius: 70px;
+    }
+
+    .v_list {
+        font-size: 30px;
+    }
+
+    .view_button {
+        font-size: 60px;
+        border-radius: 70px
+    }
+
+    .error_log {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        font-size: 30px;
+        margin-bottom: 30px;
+        margin-right: 30px;
+        border-radius: 70px
+    }
+
+</style>
 <head>
     <title>CSV Upload</title>
 </head>
 <body>
-
-<h1>Upload CSV File</h1>
-
-<form action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="csv_file" required>
-    <button type="submit">Upload</button>
-</form>
-
-<table border="1">
+    <h1 style="font-size: 40px">Upload CSV File</h1>
+    <div class="upload_background">
+            <form class="upload_pos" action="/upload" method="POST" enctype="multipart/form-data">
+                <input class="select_button" type="file" name="csv_file" required>
+                <button class="upload_button" type="submit">Upload</button>
+            </form>
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p style="color: {{ 'green' if category == 'success' else 'red' }};">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<table class="v_list">
     <tr>
         <th>Valid files</th>
     </tr>
     {% for row in rows %}
     <tr>
-        <td><a href="/file/{{ row['file_id'] }}">{{ row['filename'] }}</a></td>
+        <td>
+            {{ row['filename'] }}
+            <a href="/file/{{ row['file_id'] }}"><button>View</button></a>
+        </td>
     </tr>
     {% endfor %}
 </table>
 
-    <tr>
-        <th>Invalid files</th>
-    </tr>
-    {% for row in invalid %}
-    <tr>
-        <td>{{ row['filename'] }}</td>
-    </tr>
-    {% endfor %}
-<a href="/">Upload another file</a>
-
+<a href="/error_logs"><button class="error_log">Error log</button></a>
 </body>
 </html>
